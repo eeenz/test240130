@@ -33,9 +33,9 @@
         </div>
     </main>
     <script>
-        //1번문제
-        const tab_title = document.querySelectorAll('.tab_title tab')
+        const tab_title = document.querySelectorAll('.tab_title .tab')
         const tab_c = document.querySelectorAll('.tab_contents .tab_c')
+        const tab_contents = document.querySelector('.tab_contents')
         console.log(tab_title, tab_c)
         const error_message = document.querySelector('.error')
         const btn = document.querySelector('#login')
@@ -46,17 +46,23 @@
             id: 'admin',
             pw: 1234,
         }]
+        
+        //1번문제
+        let tab_c_hide = ()=>{for(let i of tab_c){i.style = 'display:none;'}} 
+        tab_c_hide()
+        tab_c[0].style = 'display:block;'
+        let title_remove = ()=>{for(let i of tab_title){i.classList.remove('active')}}
+        title_remove()
+        tab_title[0].classList.add('active')
 
-        // let tab_c_hide = ()=>{for(let i of tab_c){i.style = 'display:none;'}} 
-        // tab_c_hide()
-        // tab_c[0].style = 'display:block;'
-
-        // tab_title.forEach((o,i)=>{
-        //     o.addEventListener('click',()=>{
-        //         tab_c[i].style.display = 'block'
-        //         tab_c_hide()
-        //     })
-        // })
+        tab_title.forEach((o,i)=>{
+            o.addEventListener('click',()=>{
+                title_remove()
+                o.classList.add('active')
+                tab_c_hide()
+                tab_c[i].style.display = 'block'
+            })
+        })
 
         //2번문제
         btn.addEventListener('click',()=>{
@@ -72,7 +78,6 @@
                 error_message.innerHTML = '아이디와 비밀번호를 입력하세요'
             }
         })
-
     </script>
 </body>
 </html>
